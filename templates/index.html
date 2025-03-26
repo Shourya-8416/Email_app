@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Email Campaign Dashboard</title>
+</head>
+<body>
+  <h1>Email Campaign Dashboard</h1>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <p><a href="{{ url_for('upload') }}">Upload CSV</a></p>
+  <p><a href="{{ url_for('start_campaign') }}">Start Campaign</a></p>
+  <p><a href="{{ url_for('config') }}">Update Configuration</a></p>
+
+  <h2>Campaign Status</h2>
+  <ul>
+    <li>Progress: {{ status.progress }}</li>
+    <li>Total Emails: {{ status.total }}</li>
+    <li>Sent: {{ status.sent }}</li>
+    <li>Failed: {{ status.failed }}</li>
+    {% if status.start_time %}
+      <li>Started at: {{ status.start_time | datetimeformat }}</li>
+    {% endif %}
+  </ul>
+
+  <h2>Current Configuration</h2>
+  <ul>
+    <li>SMTP Server: {{ config.smtp_server }}</li>
+    <li>SMTP Port: {{ config.smtp_port }}</li>
+    <li>Email: {{ config.email }}</li>
+    <li>Subject: {{ config.subject }}</li>
+    <!-- List other settings as needed -->
+  </ul>
+</body>
+</html>

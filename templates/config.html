@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Configuration</title>
+</head>
+<body>
+  <h1>Update Configuration</h1>
+  <form action="{{ url_for('config') }}" method="post">
+    <label>SMTP Server:</label>
+    <input type="text" name="smtp_server" value="{{ config.smtp_server }}" required><br>
+
+    <label>SMTP Port:</label>
+    <input type="number" name="smtp_port" value="{{ config.smtp_port }}" required><br>
+
+    <label>IMAP Server:</label>
+    <input type="text" name="imap_server" value="{{ config.imap_server }}"><br>
+
+    <label>IMAP Port:</label>
+    <input type="number" name="imap_port" value="{{ config.imap_port }}"><br>
+
+    <label>Email:</label>
+    <input type="email" name="email" value="{{ config.email }}" required><br>
+
+    <label>Password:</label>
+    <input type="password" name="password" value="{{ config.password }}" required><br>
+
+    <label>Subject:</label>
+    <input type="text" name="subject" value="{{ config.subject }}"><br>
+
+    <label>Email Template (HTML):</label><br>
+    <textarea name="email_template_html" rows="10" cols="50">{{ config.email_template_html }}</textarea><br>
+
+    <label>Email Column Name (CSV):</label>
+    <input type="text" name="email_column_name" value="{{ config.email_column_name }}" required><br>
+
+    <label>First Name Column (CSV):</label>
+    <input type="text" name="first_name_column_name" value="{{ config.first_name_column_name }}" required><br>
+
+    <label>Unsubscribe Domain:</label>
+    <input type="text" name="unsubscribe_domain" value="{{ config.unsubscribe_domain or '' }}"><br>
+
+    <label>Tracking URL Base:</label>
+    <input type="text" name="tracking_url" value="{{ config.tracking_url or '' }}"><br>
+
+    <button type="submit">Save Configuration</button>
+  </form>
+  <p><a href="{{ url_for('index') }}">Back to Dashboard</a></p>
+</body>
+</html>
